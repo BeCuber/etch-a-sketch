@@ -19,9 +19,16 @@ body {
     height: 40rem;
 }
 
-.square {
+.row {
     background-color: violet;
     border: 1px solid black;
     flex: 1;
+    display: flex;
+    flex-direction: column;
     
+}
+
+.column {
+    flex: 1;
+    border: 1px solid black;
 }
