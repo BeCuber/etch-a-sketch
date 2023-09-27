@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {    
+    background-color: rgb(145, 252, 131);
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    box-shadow: 5px 10px 8px 10px rgb(81, 139, 73);
+    background-color: rgb(176, 243, 167);
+    display: flex;
+    width: 40rem;
+    height: 40rem;
+}
+
+.square {
+    background-color: violet;
+    width: 8rem;
+    height: 8rem;
+    
+}
