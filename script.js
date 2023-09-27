@@ -1,41 +1,57 @@
+//** CREATE THE GRID **/
 
+
+//declare number of squares per side
+let squareNumber = 16;
+
+//get container
 const container = document.getElementById('container');
 
-
-
-//crear 16 div's, se almacenan en un array
+//create an array to store 16 div for the first row
 let rowArrayDiv = [];
-for (let i = 0; i<16; i++){
-    let rowDiv = document.createElement('div');
-    rowDiv.className = 'row';
-    rowDiv.id = [i]; //posiblemente innecesario que tengan un id
+
+for (let i = 0; i<squareNumber; i++){
+    let rowDiv = document.createElement('div'); //create 1 div
+    rowDiv.className = 'square row'; //add classes to each div
+    rowDiv.id = [i]; //add id to each div
     rowArrayDiv.push(rowDiv);
 };
 
-//se anexan los elementos del array en el container
-
+//appends each item from row array inside the container
 for (let i = 0; i<rowArrayDiv.length; i++){
     container.appendChild(rowArrayDiv[i]);
+
+    //create an array with same length as row-array for each row-div
+    let colArrayDiv = [];
+    for (let k=0; k<rowArrayDiv.length; k++){
+        let colDiv = document.createElement('div');
+        colDiv.className = 'square column';
+        colArrayDiv.push(colDiv);
+    };
+    
+    //get items from row-array    
+    let firstDiv = document.getElementById([i]);
+    //append each col-array to each row-div
+    for (let j=0; j<rowArrayDiv.length; j++){
+        firstDiv.appendChild(colArrayDiv[j]);
+    };
+
 };
-console.log(container);//borrable
 
-//crear 16 div en el primero del anterior
-let firstDiv = document.getElementById("0");
 
-let colArrayDiv = [];
-for (let i=0; i<16; i++){
-    let colDiv = document.createElement('div');
-    colDiv.className = 'column';
-    colArrayDiv.push(colDiv);
-};
+//**  **/
 
-console.log(rowArrayDiv);//borrable
-console.log(colArrayDiv); //borrable
 
-for (let i=0; i<colArrayDiv.length; i++){
-    firstDiv.appendChild(colArrayDiv[i]);
-};
-console.log(firstDiv);
+
+
+
+
+
+
+
+
+
+
 
 
 
