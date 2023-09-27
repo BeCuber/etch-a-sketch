@@ -21,7 +21,7 @@ body {
 
 .square {
     background-color: violet;
-    width: 8rem;
-    height: 8rem;
+    border: 1px solid black;
+    flex: 1;
     
 }
