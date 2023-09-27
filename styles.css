@@ -9,9 +9,11 @@ body {
     padding-top: 5rem;
     display: flex;
     justify-content: center;
+    gap: 10rem;
 }
 
 #container {
+    flex: none;
     box-shadow: 5px 10px 8px 10px rgb(81, 139, 73);
     background-color: rgb(176, 243, 167);
     display: flex;
@@ -20,8 +22,6 @@ body {
 }
 
 .row {
-    background-color: violet;
-    border: 1px solid black;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -30,9 +30,19 @@ body {
 
 .column {
     flex: 1;
-    border: 1px solid black;
 }
 
-.square {
-    
+#startClear {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#options {
+    flex: none;
+}
+
+#inputCard {
+    flex-wrap: wrap;
 }

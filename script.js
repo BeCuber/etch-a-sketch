@@ -12,7 +12,7 @@ let rowArrayDiv = [];
 
 for (let i = 0; i<squareNumber; i++){
     let rowDiv = document.createElement('div'); //create 1 div
-    rowDiv.className = 'square row'; //add classes to each div
+    rowDiv.className = 'row'; //add classes to each div
     rowDiv.id = [i]; //add id to each div
     rowArrayDiv.push(rowDiv);
 };
@@ -25,7 +25,7 @@ for (let i = 0; i<rowArrayDiv.length; i++){
     let colArrayDiv = [];
     for (let k=0; k<rowArrayDiv.length; k++){
         let colDiv = document.createElement('div');
-        colDiv.className = 'square column';
+        colDiv.className = 'column';
         colArrayDiv.push(colDiv);
     };
     
@@ -39,9 +39,23 @@ for (let i = 0; i<rowArrayDiv.length; i++){
 };
 
 
-//**  **/
+//** EVENTS LISTENERS **//
 
+//------Mouse Painting------//
 
+let squareTarget = document.getElementsByClassName('column');
+
+for (let i=0; i<squareTarget.length; i++){
+    squareTarget[i].addEventListener('mouseover', changeColor);
+};
+
+function changeColor(e){
+    e.target.style.backgroundColor = 'green';
+};
+
+//------Input------//
+let numberChosen = document.getElementsByTagName("input");
+numberChosen.textContent = "hello";
 
 
 
