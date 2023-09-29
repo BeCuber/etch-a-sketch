@@ -9,7 +9,7 @@ body {
     padding-top: 5rem;
     display: flex;
     justify-content: center;
-    /*gap: 10rem;*/
+    gap: 5rem;
 }
 
 #container {
@@ -39,7 +39,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
     padding: 4rem 0;
 }
 
@@ -77,15 +76,36 @@ input {
 
 }
 
+#output{
+    font-size: 12px;
+
+}
+
+
 #clearBtn {
     height: 6rem;
     width: 12rem;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
     border-radius: 24px;
     cursor: pointer;
-
+    background-color: rgb(176, 243, 167);
+    box-shadow: 0 9px rgb(81, 139, 73);
+    border: 1px solid rgb(81, 139, 73);
 }
+#clearBtn:active {
+    transform: translateY(4px);
+    box-shadow: 0 5px rgb(81, 139, 73);
+}
+#clearBtn:focus {
+    border: 1px solid rgb(81, 139, 73);
+}
+
+
+
+
+
 
 #switchColor {
     border: 1px solid black
