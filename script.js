@@ -42,6 +42,7 @@ function changeSide(e){
 };
 
 
+
 //** CREATE THE GRID **/
 
 
@@ -74,6 +75,7 @@ function createGrid(squareNumber){
         for (let k=0; k<rowArrayDiv.length; k++){
             let colDiv = document.createElement('div');
             colDiv.className = 'column'; //add 'column' class to every square
+            colDiv.style.backgroundColor = 'rgb(176, 243, 167)';//asign first color
             colArrayDiv.push(colDiv);//got array of arrays
         };
         
@@ -93,15 +95,39 @@ function createGrid(squareNumber){
 //------MOUSE PAINTING------//
 
 function paint(){
-    let squareTarget = document.getElementsByClassName('column');
-
+    let squareTarget = document.getElementsByClassName('column');//get array of div,s to iterate
+        
     for (let i=0; i<squareTarget.length; i++){
         squareTarget[i].addEventListener('mouseover', changeColor);
     };
 
     function changeColor(e){
-        e.target.style.backgroundColor = 'green';
+        let n = 0; //counter to get the effect of darken up to 4 times
+        while(n < 4){
+            n++
+            let color = e.target.style.backgroundColor; //get the actual color
+            e.target.style.backgroundColor = darkenColor(color); //changes it
+            color = e.target.style.backgroundColor;//update color
+            break;
+        };
     };
+};
+
+//color must be an 'rgb()' complete value
+
+function darkenColor(color){
+    let colorSliced = color.slice(4, -1);
+   
+    let colorSlicedSplitted = colorSliced.split(",");
+    
+    let newArrayRgb = [];
+    for (let i=0; i<colorSlicedSplitted.length; i++){
+        let op = (colorSlicedSplitted[i]*1)-(Math.round(255/4));
+        newArrayRgb.push(op);        
+    }; 
+
+    let darkerColor = "rgb("+newArrayRgb[0]+", "+newArrayRgb[1]+", "+newArrayRgb[2]+")";
+    return darkerColor;
 };
 
 
