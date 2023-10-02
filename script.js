@@ -1,16 +1,29 @@
-//get container
+
+//------PICKER,s NEEDED------//
+
 const container = document.getElementById('container');
-
-//get input textbox
 let numberChosen = document.getElementById('numberChosen');
-
-//declare number of squares per side by default 
 let squareNumber = numberChosen.value;
+let firstColor = "rgb(203, 198, 245)";
+let body = document.querySelector('body');
+let inputcard = document.getElementById("inputCard");
+let input = document.getElementById("numberChosen");
+let clearBtn = document.getElementById('clearBtn');
 
-//create a Grid by default
+
+
+//create and paint the Grid and the interface by default
+
+body.classList = "body-background-default";
+inputcard.classList = "inputcard-default";
+input.classList = "input-default";
+clearBtn.classList = "clearBtn-default";
+container.classList = "container-default";
 createGrid(squareNumber);
+darkenPaint(firstColor);
 
-//------HANDLING INPUT------//
+
+//------HANDLING INPUT BOX------//
 
 //change color if value invalid
 numberChosen.addEventListener('keyup', validation);
@@ -37,13 +50,107 @@ function changeSide(e){
     if (e.key == "Enter" && squareNumber > 0 && squareNumber <= 100){
         
         createGrid(squareNumber); //create a new grid
+        if (firstColor == "rgb(224, 198, 130)"){
+            paint(firstColor);
+        }else{
+            darkenPaint(firstColor);
+        };
         
     }; 
 };
+//-------------------------------//
+
+
+//------CLEAR BUTTON------//
+
+clearBtn.addEventListener('click', erase);
+ 
+function erase(){
+   let colArrayDiv = document.getElementsByClassName('column');
+    
+   for (let i=0; i<colArrayDiv.length; i++){
+       colArrayDiv[i].style.backgroundColor = firstColor;
+   };
+};
+//-------------------------------//
 
 
 
-//** CREATE THE GRID **/
+//------HANDLING SELECT DROPDOWN------//
+
+let pref = document.getElementById("switchColor");
+
+pref.addEventListener('click', switchClr);
+function switchClr(e){
+    switch (e.target.value){
+        case "random":
+            //set color interface
+            body.classList = "body-background-random";
+            inputcard.classList = "inputcard-random";
+            input.classList = "input-random";
+            clearBtn.classList = "clearBtn-random";
+            container.classList = "container-random";
+            firstColor = "rgb(224, 198, 130)";
+            
+            //create and paint Grid
+            createGrid(squareNumber);
+            paint(firstColor);
+
+            break;
+
+        case "pink":
+            //set color interface
+            body.classList = "body-background-pink";
+            inputcard.classList = "inputcard-pink";
+            input.classList = "input-pink";
+            clearBtn.classList = "clearBtn-pink";
+            container.classList = "container-pink";
+            firstColor = "rgb(217, 165, 229)";
+
+            //create and paint Grid
+            createGrid(squareNumber);
+            darkenPaint(firstColor);
+
+            break;
+
+        case "green":
+            //set color interface
+            body.classList = "body-background-green";
+            inputcard.classList = "inputcard-green";
+            input.classList = "input-green";
+            clearBtn.classList = "clearBtn-green";
+            container.classList = "container-green";
+            firstColor = "rgb(176, 243, 167)";
+
+            //create and paint Grid
+            createGrid(squareNumber);
+            darkenPaint(firstColor);
+
+            break;
+
+
+        default:
+            //set color interface
+            body.classList = "body-background-default";
+            inputcard.classList = "inputcard-default";
+            input.classList = "input-default";
+            clearBtn.classList = "clearBtn-default";
+            container.classList = "container-default";
+            firstColor = "rgb(203, 198, 245)";
+            
+            //create and paint Grid
+            createGrid(squareNumber);
+            darkenPaint(firstColor);
+    };
+};
+//-------------------------------//
+
+
+
+//---------FUNCTIONS---------//
+
+
+//--- CREATE THE GRID ---//
 
 
 function createGrid(squareNumber){
@@ -75,7 +182,6 @@ function createGrid(squareNumber){
         for (let k=0; k<rowArrayDiv.length; k++){
             let colDiv = document.createElement('div');
             colDiv.className = 'column'; //add 'column' class to every square
-            colDiv.style.backgroundColor = 'rgb(176, 243, 167)';//asign first color
             colArrayDiv.push(colDiv);//got array of arrays
         };
         
@@ -86,34 +192,61 @@ function createGrid(squareNumber){
             firstDiv.appendChild(colArrayDiv[j]);
         };
     };
-
-    //add paint function to the grid
-    paint();
 };
+//-------------------------------//
 
+// for mouse painting the color passed into the function must be a string "rgb()"//
 
-//------MOUSE PAINTING------//
+//------MOUSE RANDOM PAINTING------//
 
-function paint(){
+function paint(anyColor){
     let squareTarget = document.getElementsByClassName('column');//get array of div,s to iterate
         
     for (let i=0; i<squareTarget.length; i++){
+        squareTarget[i].style.backgroundColor = anyColor;
         squareTarget[i].addEventListener('mouseover', changeColor);
     };
 
     function changeColor(e){
-        let n = 0; //counter to get the effect of darken up to 4 times
-        while(n < 4){
-            n++
-            let color = e.target.style.backgroundColor; //get the actual color
-            e.target.style.backgroundColor = darkenColor(color); //changes it
-            color = e.target.style.backgroundColor;//update color
-            break;
-        };
+        
+        e.target.style.backgroundColor = getRandomColor();
+    
+        
     };
+    
 };
 
-//color must be an 'rgb()' complete value
+function getRandomColor(){
+            
+    r = Math.round((Math.random()*255));
+    g = Math.round((Math.random()*255));
+    b = Math.round((Math.random()*255)); 
+    
+    let randomColor = "rgb("+r+", "+g+", "+b+")";
+    return randomColor;
+};
+
+//-------------------------------//
+
+
+//------MOUSE DARKEN PAINTING------//
+
+function darkenPaint(somecolor){
+    let squareTarget = document.getElementsByClassName('column');//get array of div,s to iterate
+        
+    for (let i=0; i<squareTarget.length; i++){
+        squareTarget[i].style.backgroundColor = somecolor;
+        squareTarget[i].addEventListener('mouseover', changeColor);
+    };
+
+    function changeColor(e){
+       
+        let color = e.target.style.backgroundColor; //get the actual color
+        e.target.style.backgroundColor = darkenColor(color); //changes it
+        color = e.target.style.backgroundColor;//update color
+        
+    };
+};
 
 function darkenColor(color){
     let colorSliced = color.slice(4, -1);
@@ -122,7 +255,7 @@ function darkenColor(color){
     
     let newArrayRgb = [];
     for (let i=0; i<colorSlicedSplitted.length; i++){
-        let op = (colorSlicedSplitted[i]*1)-(Math.round(255/4));
+        let op = (colorSlicedSplitted[i]*1)-(Math.round(255/10));
         newArrayRgb.push(op);        
     }; 
 
@@ -130,20 +263,4 @@ function darkenColor(color){
     return darkerColor;
 };
 
-
-
-//------CLEAR BUTTON------//
-
-let clearBtn = document.getElementById('clearBtn');
-
-clearBtn.addEventListener('click', erase);
- 
-function erase(){
-   let colArrayDiv = document.getElementsByClassName('column');
-    
-   for (let i=0; i<colArrayDiv.length; i++){
-       colArrayDiv[i].style.backgroundColor = 'rgb(176, 243, 167)';
-   };
-};
-
-
+//-------------------------------//

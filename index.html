@@ -10,13 +10,25 @@
 <body>
     <div id="startClear">
         <div id="inputCard">
-            <p>¿How many squares do you want in each side?</p>
-            <input type="text" id="numberChosen" value=16>
-            <p id="output">I can draw from 1 to 100 squares</p>
+            <p id="title">¿How many squares do you want in each side?</p>
+            <div id="inpuText">
+                <input type="text" id="numberChosen" value=16>
+                <p id="output">I can draw from 1 to 100 squares</p>
+            </div>
+            <div id="preferences">
+                <select id="switchColor">
+                    <option value="">Pick a set!</option>
+                    <option value="green">Green</option>
+                    <option value="pink">Pink</option>
+                    <option value="random">Random</option>
+                </select>
+                
+            </div>
         </div>
+        
         <button id="clearBtn">CLEAR</button>
     </div>
     <div id="container"></div>
-    <div id="switchColor"></div>
+    
 </body>
 </html>
